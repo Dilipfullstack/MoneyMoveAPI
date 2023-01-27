@@ -11,5 +11,6 @@ module.exports={
         host:'localhost',
         storage:path.resolve(__dirname,'../../tabtracker.sqlite')
       }
-    }
+    },
+    authenticate_Key:'secretKey'
 }
