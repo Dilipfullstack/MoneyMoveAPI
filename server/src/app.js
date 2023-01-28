@@ -5,7 +5,11 @@ const bodyparser = require('body-parser');
 const cors = require('cors');
 const {sequelize} = require('./models')
 const dotenv = require('dotenv');
-const router = require('./router')
+const router = require('./Routes/router')
+const passport = require('passport');
+const googleRouter = require('./Routes/googleRouter')
+
+const cookieSession = require('cookie-session')
 
 dotenv.config();
 
@@ -14,7 +18,19 @@ app.use(bodyparser.json());
 app.use(cors())
 
 
-app.use('/user',router)
+app.use(cookieSession({
+  name: 'google-auth-session',
+  keys: ['key1', 'key2']
+}))
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+app.use('/',router)
+
+app.use('/google',googleRouter)
+
 
 sequelize.sync().then((res)=>{
     app.listen(3000, () => {

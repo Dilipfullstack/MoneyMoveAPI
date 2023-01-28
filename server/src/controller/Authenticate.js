@@ -4,15 +4,14 @@ const jwt =  require('jsonwebtoken');
 const config = require('../config/config'); 
 
 function jwtToken(user){
-    return jwt.sign({email:user.email,password:user.password},config.authenticate_Key,{expiresIn:'1d'})
-    // const payload = {
-    //     email:user.email,
-    //     password:user.password
-    // }
-    // const options = {
-    //     expiresIn: '1d'
-    // }
-    // return jwt.sign(payload,config.authenticate_Key,options)
+    const payload = {
+        email:user.email,
+        password:user.password
+    }
+    const options = {
+        expiresIn: '1d'
+    }
+    return jwt.sign(payload,config.authenticate_Key,options)
 }
 
 module.exports ={
