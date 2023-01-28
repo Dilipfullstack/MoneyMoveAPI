@@ -12,5 +12,7 @@ module.exports={
         storage:path.resolve(__dirname,'../../tabtracker.sqlite')
       }
     },
-    authenticate_Key:'secretKey'
+    authenticate_Key:'secretKey',
+    googleClient_id:'63228050323-ppmgdv9ejh3045ce1hvis0atiiek9dmf.apps.googleusercontent.com',
+    googleClient_secret:'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'
 }
