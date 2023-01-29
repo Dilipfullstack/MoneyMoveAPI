@@ -13,5 +13,17 @@ module.exports=(sequelize,DataTypes)=>{
     }
    })
 
+  User.associate = (models)=>{
+    User.hasMany(models.transaction,{
+        foreignKey:'user_id',
+    })
+  }
+
+  User.associate=(models)=>{
+    User.hasMany(models.reminder,{
+        foreignKey:'user_id',
+    })
+  }
+
    return User
 }

@@ -1,7 +1,8 @@
-const {User} = require('../models');
+const {User,transaction,reminder} = require('../models');
 const bcrypt =  require('bcrypt');
 const jwt =  require('jsonwebtoken');
 const config = require('../config/config'); 
+
 
 function jwtToken(user){
     const payload = {
@@ -18,7 +19,13 @@ module.exports ={
 
     // ---Get All Users --------------------------------
     async show(req,res){
-            await User.findAll().then((users)=>{
+            await User.findAll({
+               include:[
+                {
+                    model:transaction
+                }
+               ]
+            }).then((users)=>{
             res.status(200).json({
                 success:0,
                 users:users
@@ -32,10 +39,37 @@ module.exports ={
 
     },
 
+    async getUser_transaction(req,res){
+        await User.findOne({
+            attributes:['email', 'password'],
+            where:{
+                email:req.body.email,
+            },
+            include:[
+                {
+                    model:transaction,
+                    attributes:['transaction_amount','type']
+                },
+                // @TODO -- reminder and transaction should get display at once
+                {
+                    model:reminder,
+                    attributes:['reminder_type','reminder_amount','reminder_date']
+                }
+            ]
+        }).then((user)=>{
+            res.status(200).json({
+                success:0,
+                user:user
+            })
+            }).catch((err)=>{
+                res.status(404).json({})
+        })
+    },
+
+
     // ---Add Users --(SignUp)------------------------------
     async insert(req,res){
-        
-      if(req.body>0){
+      if(req.body.email.length>0 && req.body.password.length>0){
         bcrypt.hash(req.body.password,10,(err,data)=>{
             if(err){
                 res.status(400).json({
