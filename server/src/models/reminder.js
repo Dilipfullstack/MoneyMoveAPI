@@ -1,5 +1,6 @@
 const {sequelize,DataTypes} = require ('sequelize')
 
+
 module.exports=(sequelize,DataTypes)=>{
     const reminder = sequelize.define('reminder',{
         reminder_type:{

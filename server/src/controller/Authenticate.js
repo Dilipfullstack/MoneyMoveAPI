@@ -39,7 +39,8 @@ module.exports ={
 
     },
 
-    async getUser_transaction(req,res){
+    // ------ GET User , with transactions  and reminders --------------------------------
+    async getUser_reminder_transaction(req,res){
         await User.findOne({
             attributes:['email', 'password'],
             where:{
@@ -47,10 +48,10 @@ module.exports ={
             },
             include:[
                 {
-                    model:transaction,
-                    attributes:['transaction_amount','type']
+                  model:transaction  ,
+                  attributes:['transaction_amount','type']
                 },
-                // @TODO -- reminder and transaction should get display at once
+            
                 {
                     model:reminder,
                     attributes:['reminder_type','reminder_amount','reminder_date']
@@ -62,9 +63,12 @@ module.exports ={
                 user:user
             })
             }).catch((err)=>{
-                res.status(404).json({})
+                res.status(404).json({
+                    error:err.message
+                })
         })
     },
+
 
 
     // ---Add Users --(SignUp)------------------------------

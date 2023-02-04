@@ -9,7 +9,7 @@ router.post('/signIn',AuthenticateController.insert)
 
 router.post('/login',AuthenticateController.login)
 
-router.post('/getUser_transaction',AuthenticateController.getUser_transaction)
+router.post('/getUser_reminder_transaction',AuthenticateController.getUser_reminder_transaction)
 
 router.post('/transaction',transactionController.insert);
 
