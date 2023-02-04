@@ -10,14 +10,15 @@ module.exports=(sequelize,DataTypes)=>{
         type:{
             type:DataTypes.STRING,
             allowNull:false,
-        },
+        }
     })
 
-    transaction.associate= (models)=>{
+    transaction.associate=(models)=>{
         transaction.belongsTo(models.User,{
             foreignKey:'user_id'
         })
     }
+
 
     return transaction
     

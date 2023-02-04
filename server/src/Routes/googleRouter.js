@@ -25,6 +25,7 @@ googleRouter.get('/auth/callback/success' , (req , res) => {
     res.send("Welcome " + req.user.email +"<button><a href='/google/logout'>Login With Google</a></button>"  );
 });
      
+// @TODO : Make Logout function woeking
 googleRouter.get('/logout', (req, res) => {
     req.session=null
     req.logout();

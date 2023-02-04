@@ -32,7 +32,7 @@ app.use('/',router)
 app.use('/google',googleRouter)
 
 
-sequelize.sync().then((res)=>{
+sequelize.sync({force:false}).then((res)=>{
     app.listen(3000, () => {
         console.log("Port is running on 3000");
     })
