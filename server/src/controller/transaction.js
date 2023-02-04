@@ -31,31 +31,5 @@ module.exports={
        })
     },
 
-    // async show(req,res){
-    //     await transaction.findOne({
-    //         where:{ 
-    //             user_id:req.params.user_id
-    //         },
-    //         include:[
-    //             {
-    //                 model:User
-    //             }
-    //         ]
-    //     }).then((result) => res.status(200).json({
-    //         transactionByUser:result 
-    //     }))
-    // },
-
-    // async delete(req,res){
-    //     await transaction.destroy({
-    //         where:{
-    //             id: req.params.id
-    //         }
-    //     }).then((result)=>{
-    //         res.status(200).json({
-    //             message: 'Transaction deleted successfully',
-    //         })
-    //     })
-    // }
     
 }
