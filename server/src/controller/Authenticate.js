@@ -23,6 +23,9 @@ module.exports ={
                include:[
                 {
                     model:transaction
+                },
+                {
+                    model:reminder
                 }
                ]
             }).then((users)=>{
@@ -125,7 +128,8 @@ module.exports ={
                         if(result){
                                 res.status(200).json({
                                     message:"Login successful",
-                                    token:jwtToken(user)
+                                    token:jwtToken(user),
+                                    user:user
                                 })
                             
                         }

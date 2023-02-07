@@ -1,4 +1,5 @@
 import LoginVue from '@/components/Login.vue'
+import UserInfoVue from '@/components/UserInfo.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
@@ -20,6 +21,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: LoginVue
+  },
+  {
+    path: '/main',
+    name: 'UserInfo',
+    component: UserInfoVue
   }
 ]
 
