@@ -31,6 +31,10 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top:5rem ;
+  margin-top:10rem ;
+}
+
+h2,h3{
+  color: white;
 }
 </style>

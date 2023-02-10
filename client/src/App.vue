@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="hidden">
     <v-main>
       <NavBar/>
       <router-view/>
@@ -20,3 +20,11 @@ export default {
   })
 }
 </script>
+<style scoped>
+.hidden{
+  height: 100vh;
+  background: rgb(11,101,179);
+background: linear-gradient(0deg, rgba(11,101,179,1) 0%, rgba(79,255,176,1) 100%);
+  overflow: hidden;
+}
+</style>

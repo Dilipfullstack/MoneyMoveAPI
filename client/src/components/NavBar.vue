@@ -46,7 +46,9 @@ export default {
       this.$store.dispatch('setUser', null)
     },
     home () {
-      this.$router.push({ name: 'home' })
+      if (!this.isUserLoggedIn) {
+        this.$router.push({ name: 'home' })
+      }
     },
     transaction () {
       this.$router.push({ name: 'Transaction' })
