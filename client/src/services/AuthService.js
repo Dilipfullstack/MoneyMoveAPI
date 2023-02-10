@@ -18,9 +18,20 @@ function getUsers_transaction_reminder (UserEmail) {
   return HTTP().post('getUser_reminder_transaction', { email: UserEmail })
 }
 
+// ----Transaction requires user_id so that we can create a transaction for the specific user
+function addTransaction (transaction) {
+  return HTTP().post('transaction', transaction)
+}
+
+function addreminder (reminder) {
+  return HTTP().post('reminder', reminder)
+}
+
 export default {
   register,
   login,
   loginWithGoogle,
-  getUsers_transaction_reminder
+  getUsers_transaction_reminder,
+  addTransaction,
+  addreminder
 }

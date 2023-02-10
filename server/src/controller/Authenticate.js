@@ -75,9 +75,9 @@ module.exports ={
 
 
     // ---Add Users --(SignUp)------------------------------
-    async insert(req,res){
+      insert(req,res){
       if(req.body.email.length>0 && req.body.password.length>0){
-        bcrypt.hash(req.body.password,10,(err,data)=>{
+        bcrypt.hash(req.body.password,10,async (err,data)=>{
             if(err){
                 res.status(400).json({
                     message:'was not able to encrypt password'
@@ -85,7 +85,7 @@ module.exports ={
             }
             else{
                 req.body.password = data
-                User.create(req.body).then((user)=>{
+               await User.create(req.body).then((user)=>{
                     res.status(200).json({
                         success: true,
                         user:user

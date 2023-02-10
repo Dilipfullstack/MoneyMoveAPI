@@ -15,21 +15,27 @@
                                             <v-text-field v-model="userData.email"
                                             :rules="emailRules"
                                             label="E-mail"
+                                            outlined
                                             required
                                             ></v-text-field>
                                         </v-col>
+                                        <!-- Password see unsee feature implemeted -->
                                         <v-col cols="12" md="12">
                                             <v-text-field v-model="userData.password"
                                              :counter="10"
                                              :rules="passwordRules"
                                              label="password"
-                                             type="password"
+                                             outlined
+                                             :type=" show ? 'text' : 'password'"
+                                             :append-icon=" show ? 'mdi-eye' : 'mdi-eye-off'"
+                                             @click:append="show=!show"
                                              required
                                              ></v-text-field>
                                         </v-col>
-                                        <v-col cols="4" offset="4">
-                                            <v-btn  @click="login">
-                                            Submit
+                                        <span>Already have account ? <router-link :to="{ name : 'SignIn'}">SignIn</router-link></span>
+                                        <v-col cols="4" offset="4" class="mt-2">
+                                            <v-btn color="blue"  @click="login">
+                                            Login
                                             </v-btn>
                                         </v-col>
                                     </v-row>
@@ -62,12 +68,9 @@
                 </v-col>
             </v-row>
         </v-container>
-
-        <pre>{{ token }}</pre>
     </div>
 </template>
 <script>
-import { mapState } from 'vuex'
 import AuthService from '../services/AuthService'
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -78,6 +81,7 @@ export default {
         email: '',
         password: ''
       },
+      show: false,
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
@@ -96,13 +100,12 @@ export default {
             if (response.data) {
               this.$store.dispatch('setToken', response.data.token)
               this.$store.dispatch('setUser', response.data.user.email)
+              this.$store.dispatch('setUserId', response.data.user.id)
               this.$router.push({ name: 'UserInfo' })
             }
           })
 
           // If the response is successful then only user is fetched
-
-          // @TODO LIST : Token passed through this is showing null in backend
         } catch (error) {
           console.log(error.response.data.message)
         }
@@ -113,12 +116,6 @@ export default {
       const response = await AuthService.loginWithGoogle()
       console.log(response)
     }
-  },
-  computed: {
-    // eslint-disable-next-line no-undef
-    ...mapState([
-      'token'
-    ])
   }
 }
 </script>

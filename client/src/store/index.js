@@ -4,6 +4,7 @@ export default createStore({
   state: {
     token: null,
     user: null,
+    userId: null,
     isUserLoggedIn: false
 
   },
@@ -16,6 +17,9 @@ export default createStore({
     },
     setUser (state, user) {
       state.user = user
+    },
+    setUserId (state, userId) {
+      state.userId = userId
     }
   },
   actions: {
@@ -24,6 +28,9 @@ export default createStore({
     },
     setUser ({ commit }, user) {
       commit('setUser', user)
+    },
+    setUserId ({ commit }, userId) {
+      commit('setUserId', userId)
     }
   },
   modules: {
