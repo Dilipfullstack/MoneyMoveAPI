@@ -1,14 +1,16 @@
 <template>
  <div class="py-2">
-  <v-carousel>
-    <v-carousel-item
-      v-for="(item,i) in items"
-      :key="i"
-      :src="item.src"
-      reverse-transition="fade-transition"
-      transition="fade-transition"
-    ></v-carousel-item>
-  </v-carousel>
+  <v-container>
+    <v-row>
+      <v-col cols="12">
+        <div class="image">
+          <img src="logo.png" alt="" srcset="">
+          <h2>Mint Money - Your personal expense tracker</h2>
+          <h3>This is a Project to demonstrate web development skills! </h3>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
  </div>
 </template>
 
@@ -18,21 +20,21 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      items: [
-        {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'
-        },
-        {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
-        },
-        {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
-        },
-        {
-          src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
-        }
-      ]
+
     }
   }
 }
 </script>
+<style scoped>
+.image{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top:10rem ;
+}
+
+h2,h3{
+  color: white;
+}
+</style>
