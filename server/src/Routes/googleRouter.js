@@ -4,14 +4,11 @@ const passport = require('passport');
 require('../passport')
 
 // -----------Google Authentication---------------------------------------------
-googleRouter.get('/', (req, res) => {
-    res.send("<button><a href='/google/auth'>Login With Google</a></button>")
-});
 
 //Routes
 googleRouter.get('/auth', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-
+// @TODO LIST :- make a redirect url which will redirect to home page onces login
 googleRouter.get('/auth/callback', passport.authenticate('google',{
     successRedirect: '/google/auth/callback/success',
     failureRedirect: '/google/auth/callback/failure'
@@ -22,7 +19,7 @@ googleRouter.get('/auth/callback', passport.authenticate('google',{
 googleRouter.get('/auth/callback/success' , (req , res) => {
     if(!req.user)
     res.redirect('/google/auth/callback/failure');
-    res.send("Welcome " + req.user.email +"<button><a href='/google/logout'>Login With Google</a></button>"  );
+    res.send("Welcome " + req.user.email   );
 });
      
 // @TODO : Make Logout function woeking
