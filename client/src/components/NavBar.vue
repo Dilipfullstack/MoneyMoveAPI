@@ -2,8 +2,13 @@
 <template>
     <div>
       <v-toolbar density="compact" color="#81C784">
-
-      <v-toolbar-title @click="home" class="Title" >Money-Handler</v-toolbar-title>
+        <img
+        @click="home"
+        src="logo.png"
+        alt="John"
+      >
+      <v-toolbar-title @click="home" class="Title" >
+        Money-Handler</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -60,6 +65,15 @@ export default {
 cursor: pointer;
 }
 .userEmail:hover {
+  cursor: pointer;
+}
+
+img{
+  margin-left:10px ;
+  width: 50px;
+  height: 50px;
+}
+img:hover {
   cursor: pointer;
 }
 </style>
